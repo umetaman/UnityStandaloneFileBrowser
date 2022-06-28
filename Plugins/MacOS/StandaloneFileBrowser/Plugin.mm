@@ -200,6 +200,11 @@ void DialogSaveFilePanelAsync(const char* title,
             [panel setCanCreateDirectories:YES];
         }
 
+        NSWindow *window = [[NSApplication sharedApplication] keyWindow];
+        if(window != nil){
+            [window beginSheet:panel completionHandler:^(NSModalResponse response){}];
+        }
+        
         return panel;
     }
     @catch (NSException *exception) {
@@ -288,6 +293,11 @@ void DialogSaveFilePanelAsync(const char* title,
         }
         [panel setDirectoryURL:[NSURL fileURLWithPath:directory]];
         [panel setNameFieldStringValue:defaultName];
+        
+        NSWindow *window = [[NSApplication sharedApplication] keyWindow];
+        if(window != nil){
+            [window beginSheet:panel completionHandler:^(NSModalResponse response){}];
+        }
 
         return panel;
     }
